@@ -10,11 +10,14 @@ CORS(app)
 app.config.from_object(Config)
 mongo.init_app(app)
 
+
 # Función para validar los datos (solicitar al microservicio de validación)
 def validar_datos(data):
     try:
         # Enviar los datos al microservicio de validación (puedes ajustar la URL según tu configuración)
-        response = requests.post("http://localhost:5001/api/validar_recluso", json=data)
+        url="http://localhost:5001/api/validar_recluso"
+        response = requests.post(url,json=data)
+        
         
         if response.status_code == 200:
             return True, "Datos validados correctamente"
@@ -48,11 +51,11 @@ def crear_recluso():
     
     if not es_valido:
         return jsonify({"error": mensaje}), 400
-
-    #NUEVO: Si hay familiares, mándalos al microservicio de gestión
+    
+    # NUEVO: Si hay familiares, mándalos al microservicio de gestión
     if "familiares" in data and isinstance(data["familiares"], list):
         cargar_familiares_en_otro_servicio(data["familiares"])
-    
+        
     # Si los datos son válidos, guardamos los datos en la base de datos
     recluso_id = guardar_recluso(data)
 
