@@ -15,9 +15,8 @@ mongo.init_app(app)
 def validar_datos(data):
     try:
         # Enviar los datos al microservicio de validación (puedes ajustar la URL según tu configuración)
-        url="http://localhost:5001/api/validar_recluso"
-        response = requests.post(url,json=data)
-        
+        url = "http://localhost:5001/api/validar_recluso"
+        response = requests.post(url, json=data)
         
         if response.status_code == 200:
             return True, "Datos validados correctamente"
@@ -55,7 +54,7 @@ def crear_recluso():
     # NUEVO: Si hay familiares, mándalos al microservicio de gestión
     if "familiares" in data and isinstance(data["familiares"], list):
         cargar_familiares_en_otro_servicio(data["familiares"])
-        
+
     # Si los datos son válidos, guardamos los datos en la base de datos
     recluso_id = guardar_recluso(data)
 
@@ -75,4 +74,4 @@ def obtener_recluso_por_cedula(cedula):
         return jsonify({"error": f"Error al buscar el recluso: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)  # El microservicio de Ingesta corre en el puerto 5000
+    app.run(debug=True, host="0.0.0.0", port = 5000)  # El microservicio de Ingesta corre en el puerto 5000
