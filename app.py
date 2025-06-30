@@ -74,4 +74,4 @@ def obtener_recluso_por_cedula(cedula):
         return jsonify({"error": f"Error al buscar el recluso: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port = 5000)  # El microservicio de Ingesta corre en el puerto 5000
+    app.run(debug=True, host="0.0.0.0", port=5000)  # El microservicio de Ingesta corre en el puerto 5000
