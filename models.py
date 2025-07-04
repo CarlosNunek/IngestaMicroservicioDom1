@@ -16,4 +16,6 @@ def llamar_preprocesamiento(id_cedula):
         print("[✓] Preprocesamiento lanzado:", response.json())
     except Exception as e:
         print("[!] Error al llamar preprocesamiento:", str(e))
-        
+
+                                                                                          
+                                                                                              
