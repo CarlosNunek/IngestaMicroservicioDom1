@@ -57,6 +57,7 @@ def crear_recluso():
 
     # Si los datos son válidos, guardamos los datos en la base de datos
     recluso_id = guardar_recluso(data)
+    
 
     return jsonify({"mensaje": "Recluso creado", "id": recluso_id}), 201
 
