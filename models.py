@@ -1,5 +1,6 @@
 from flask_pymongo import PyMongo
 import requests
+from config import Config
 
 mongo = PyMongo()
 
@@ -11,7 +12,7 @@ def guardar_recluso(data):
 
 def llamar_preprocesamiento(id_cedula):
     try:
-        url = "http://localhost:5004/api/preprocesar_datos/" + str(id_cedula)
+        url = Config.PREPROCESAMIENTO_URL + str(id_cedula)
         response = requests.get(url)
         print("[✓] Preprocesamiento lanzado:", response.json())
     except Exception as e:

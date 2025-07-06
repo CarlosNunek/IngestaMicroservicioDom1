@@ -15,7 +15,7 @@ mongo.init_app(app)
 def validar_datos(data):
     try:
         # Enviar los datos al microservicio de validación (puedes ajustar la URL según tu configuración)
-        url = "http://localhost:5001/api/validar_recluso"
+        url = Config.VALIDACION_URL
         response = requests.post(url, json=data)
         
         if response.status_code == 200:
@@ -29,7 +29,7 @@ def validar_datos(data):
 def cargar_familiares_en_otro_servicio(familiares):
     try:
         # Cambia la IP si subes a EC2 luego
-        url = "http://localhost:3001/api/familiares/cargar"
+        url = Config.FAMILIARES_URL
         payload = {"familiares": familiares}
         response = requests.post(url, json=payload)
 
